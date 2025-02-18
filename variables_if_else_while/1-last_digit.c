@@ -30,7 +30,7 @@ int main(void)
 	printf("and is less than 6 and not 0\n");
 	}
 
-	else if (last_digit_of_n == 0)
+	else
 	{
 	printf("and is 0\n");
 	}
