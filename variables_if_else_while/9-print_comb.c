@@ -11,16 +11,12 @@ int main(void)
 
 	while (single_digit_number <= '9')
 	{
+		putchar(single_digit_number);
+
 		if (single_digit_number != '9')
 		{
-			putchar(single_digit_number);
 			putchar(',');
 			putchar(' ');
-		}
-
-		else
-		{
-			putchar(single_digit_number);
 		}
 
 	single_digit_number++;
