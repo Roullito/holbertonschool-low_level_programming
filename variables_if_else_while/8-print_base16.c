@@ -8,13 +8,13 @@
 int main(void)
 {
 	char hexa_number = '0';
+	char hexa_lettre = 'a';
 
 		while (hexa_number <= '9')
 		{
 			putchar(hexa_number);
 			hexa_number++;
 		}
-	char hexa_lettre = 'a';
 
 		while (hexa_lettre <= 'f')
 		{
