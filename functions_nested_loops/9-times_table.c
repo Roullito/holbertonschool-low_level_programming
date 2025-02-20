@@ -23,8 +23,15 @@ void times_table(void)
 
 			else
 			{
-				_putchar(' ');
-				_putchar(produit + '0');
+
+				if (y > 0 && y <= 9)
+				{
+					_putchar(' ');
+					_putchar(produit + '0');
+				}
+
+				else
+					_putchar(produit + '0');
 			}
 
 			if (y < 9)
@@ -34,7 +41,6 @@ void times_table(void)
 			}
 
 		}
-
 		_putchar('\n');
 	}
 }
