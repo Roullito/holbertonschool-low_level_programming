@@ -2,9 +2,12 @@
 #include <stdio.h>
 
 /**
- * main - check the code
+ * mul - multiplies two integers
  *
- * Return: Always 0.
+ * @a: 98 && -402
+ * @b: 1024 && 4096
+ *
+ * Return: a * b.
  */
 
 int mul(int a, int b)
