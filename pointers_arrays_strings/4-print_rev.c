@@ -10,33 +10,17 @@
 
 void print_rev(char *s)
 {
+	char *start = s;
+
 	while (*s != '\0')
 	{
 		s++;
 	}
 
-	while (*s != 'I')
+	while (s != start)
 	{
 		s--;
 		_putchar(*s);
-	}
-
-	s--;
-
-	while (*s != 'I')
-	{
-		s--;
-		_putchar(*s);
-
-	}
-
-	s--;
-
-	while (*s != 'I')
-	{
-		s--;
-		_putchar(*s);
-
 	}
 
 	_putchar('\n');
