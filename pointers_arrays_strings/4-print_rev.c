@@ -3,7 +3,7 @@
 /**
  * print_rev - function that prints a string in reverse
  *
- * @str: address of charactere of the string
+ * @s: address of charactere of the string
  *
  * Return: void
  */
