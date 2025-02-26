@@ -34,9 +34,9 @@ int _atoi(char *s)
 		}
 
 		else if (find == 1)
-			{
-				break;
-			}
+		{
+			break;
+		}
 	}
 return (result * sign);
 }
