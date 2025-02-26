@@ -28,6 +28,11 @@ int _atoi(char *s)
 			sign = sign * -1;
 		}
 
+		else if (s[i] == '+' && find == 0)
+		{
+
+		}
+
 		else if (find == 1)
 			{
 				break;
