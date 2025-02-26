@@ -3,10 +3,10 @@
 /**
  * char *_strcpy - function that copies the string pointed to by src
  *
- * @a: pointeur to address of array[0]
- * @n: number of array
+ * @src: pointe vers la chaîne originale.
+ * @dest: pointe vers s1, qui est le tableau où la copie est stockée.
  *
- * Return: char.
+ * Return: dest.
  */
 
 char *_strcpy(char *dest, char *src)
