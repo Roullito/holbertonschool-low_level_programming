@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 
 /**
  * _atoi - function that convert a string to an integer.
@@ -31,6 +32,11 @@ int _atoi(char *s)
 		{
 			result = result * 10 + (s[i] - '0');
 			find = 1;
+
+			if (result > (INT_MAX - (s[i] - '0')) / 10)
+			{
+				return (sign == 1 ? INT_MAX : INT_MIN);
+			}
 		}
 
 		else if (find == 1)
