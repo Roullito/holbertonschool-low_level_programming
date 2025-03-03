@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Format with Betty",
+            "type": "shell",
+            "command": "expand -t 8 ${file} | sed -E 's/^[[:space:]]+/\\t/g; s/([a-zA-Z0-9_])\\s*\\*\\s*([a-zA-Z0-9_])/\\1 *\\2/g; s/\\b(if|else|while|for|return|switch)\\(/\\1 (/g; s/\\) \\{/)\\n{/g' > tmpfile && mv tmpfile ${file} && betty-style ${file}",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

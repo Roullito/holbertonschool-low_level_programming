@@ -1,0 +1,17 @@
+{
+    "editor.tabSize": 8,
+    "editor.insertSpaces": false,
+    "editor.rulers": [80],
+    "editor.wordWrap": "off",
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": false,
+    "editor.trimAutoWhitespace": true,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "[c]": {
+        "editor.defaultFormatter": null
+    },
+    "C_Cpp.formatting": "disabled"
+}
