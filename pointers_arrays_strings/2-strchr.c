@@ -21,5 +21,5 @@
 		return (&s[i]);
 	}
 
-	return (s);
+	return (0);
  }
