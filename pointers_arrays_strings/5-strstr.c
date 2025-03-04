@@ -3,7 +3,7 @@
 /**
 * *_strstr - function that searches a string for any of a set of bytes.
 * @haystack: char *s = "hello, world"
-* @accept: char *f = "world";
+* @needle: char *f = "world";
 * Return: &haystack[i] si tte la sting est = à needle et 0 sinon
 */
 
@@ -24,6 +24,9 @@ char *_strstr(char *haystack, char *needle)
 
 	if (needle[j] == '\0')
 	return (&haystack[i]);
+
+	if (*needle == '\0')
+	return haystack;
 	}
 	}
 
