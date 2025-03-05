@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 /**
-	* print_diagsums - function that prints the sum of
-	* the two diagonals of a square matrix of integers.
-	* @a: pointeur vers un tableau
-	* @size: valeur de l'index max du tableau
-	* Return: void
-	*/
+* print_diagsums - function that prints the sum of
+* the two diagonals of a square matrix of integers.
+* @a: pointeur vers un tableau
+* @size: valeur de l'index max du tableau
+* Return: void
+*/
 
 	void print_diagsums(int *a, int size)
 	{
