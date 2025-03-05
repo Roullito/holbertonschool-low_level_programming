@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * _puts_recursion - function that prints a string
+ * @s: pointer vers une chaine de charactère*
+ * Return: void
+ */
+
 void _puts_recursion(char *s)
 {
 	if (*s != '\0')
