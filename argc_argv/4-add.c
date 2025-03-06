@@ -31,12 +31,9 @@ int main(int argc, char *argv[])
 				printf("Error\n");
 				return (1);
 			}
-
-			else
-			{
-				add += atoi(argv[i]);
-			}
 		}
+
+		add += atoi(argv[i]);
 	}
 
 	printf("%d\n", add);
