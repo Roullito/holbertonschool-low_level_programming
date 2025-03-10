@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * *_strdup -function that returns a pointer to a newly allocated space
+ * @str: pointeur vers une chaine
+ * Return: str
+ */
+
 char *_strdup(char *str)
 {
 	int i;
