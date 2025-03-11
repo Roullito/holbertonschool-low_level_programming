@@ -6,7 +6,7 @@
  * @grid: The 2D grid.
  * @height: The number of rows.
  */
-void free_grid(int **grid, int height)
+/*void free_grid(int **grid, int height)
 {
 	int i;
 
@@ -17,7 +17,7 @@ void free_grid(int **grid, int height)
 		free(grid[i]);
 
 	free(grid);
-}
+}*/
 
 /**
  * alloc_grid - Allocates a 2D grid of integers.
