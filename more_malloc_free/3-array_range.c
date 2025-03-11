@@ -3,6 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * *array_range - function that creates an array of integers.
+ * @min: array[0]
+ * @max: array[NULL - 1]
+ * Return: array
+ */
+
 int *array_range(int min, int max)
 {
 	int *array;
