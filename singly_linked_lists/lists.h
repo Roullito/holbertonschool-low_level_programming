@@ -2,6 +2,13 @@
 #define LISTS_H
 #include <stddef.h>
 
+/**
+ * struct list_s - list of char ui struct
+ * @str: string
+ * @len: size of string
+ * @next: next list
+ */
+
 typedef struct list_s
 {
 	char *str;
