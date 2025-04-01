@@ -3,7 +3,7 @@
 #include <stddef.h>
 
 /**
- * print_dlistint - Function that prints all the elements of a list.
+ * dlistint_len - Function that return the number of elements of a list.
  * @h: pointer to the list
  * Return: i
  */
