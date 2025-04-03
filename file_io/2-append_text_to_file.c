@@ -5,7 +5,7 @@
 #include "main.h"
 
 /**
- * create_file - function that creates a file.
+ * append_text_to_file - append_text_to_file
  * @filename: pointer to name of file.
  * @text_content: content of the file
  * Return: -1, 1
