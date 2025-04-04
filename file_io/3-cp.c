@@ -1,10 +1,12 @@
-#include "main.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * main - copies content of a file to another
  * @argc: argument count
  * @argv: argument vector
- *
  * Return: 0 on success
  */
 int main(int argc, char *argv[])
@@ -15,7 +17,6 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
 		dprintf(1, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
@@ -23,7 +24,6 @@ int main(int argc, char *argv[])
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
 		dprintf(1, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
@@ -31,7 +31,6 @@ int main(int argc, char *argv[])
 	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
-		dprintf(2, "Error: Can't write to %s\n", argv[2]);
 		dprintf(1, "Error: Can't write to %s\n", argv[2]);
 		close(fd_from);
 		exit(99);
@@ -42,7 +41,6 @@ int main(int argc, char *argv[])
 		write_count = write(fd_to, buffer, read_count);
 		if (write_count != read_count)
 		{
-			dprintf(2, "Error: Can't write to %s\n", argv[2]);
 			dprintf(1, "Error: Can't write to %s\n", argv[2]);
 			close(fd_from);
 			close(fd_to);
@@ -52,7 +50,6 @@ int main(int argc, char *argv[])
 
 	if (read_count == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
 		dprintf(1, "Error: Can't read from file %s\n", argv[1]);
 		close(fd_from);
 		close(fd_to);
@@ -61,14 +58,12 @@ int main(int argc, char *argv[])
 
 	if (close(fd_from) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_from);
 		dprintf(1, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
 	}
 
 	if (close(fd_to) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_to);
 		dprintf(1, "Error: Can't close fd %d\n", fd_to);
 		exit(100);
 	}
