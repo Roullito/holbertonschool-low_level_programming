@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "main.h"
+
 /**
  * close_file - Closes a file descriptor and handles errors
  * @fd: File descriptor to close
@@ -11,7 +12,7 @@ void close_file(int fd)
 {
 	if (close(fd) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
@@ -25,10 +26,11 @@ void check_args(const char *file_from, char *file_to)
 {
 	if (file_from == NULL || file_to == NULL)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 }
+
 /**
  * handle_copy - Copies contents from one file to another
  * @fd_from: Source file descriptor
@@ -42,12 +44,11 @@ void handle_copy(int fd_from, int fd_to, char *buffer,
 {
 	ssize_t b_read, b_written;
 
-
-	while ((b_read = b_read = read(fd_from, buffer, 1024)) != 0)
+	while ((b_read = read(fd_from, buffer, 1024)) != 0)
 	{
 		if (b_read == -1)
 		{
-			dprintf(2, "Error: Can't read from file %s\n", file_from);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 			close_file(fd_from);
 			close_file(fd_to);
 			exit(98);
@@ -56,14 +57,14 @@ void handle_copy(int fd_from, int fd_to, char *buffer,
 		b_written = write(fd_to, buffer, b_read);
 		if (b_written == -1)
 		{
-			dprintf(2, "Error: Can't write to %s\n", file_to);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 			close_file(fd_from);
 			close_file(fd_to);
 			exit(99);
 		}
 	}
-
 }
+
 /**
  * copiefile - Manages opening, copying, and closing files
  * @file_from: Source file name
@@ -91,24 +92,26 @@ int copiefile(const char *file_from, char *file_to)
 		close_file(fd_from);
 		exit(99);
 	}
+
 	handle_copy(fd_from, fd_to, buffer, file_from, file_to);
 
 	close_file(fd_from);
 	close_file(fd_to);
 	return (0);
 }
+
 /**
- * main - point d'entrée du programme
- * @argc: nombre d'arguments
- * @argv: tableau des arguments
+ * main - Entry point of the program
+ * @argc: Argument count
+ * @argv: Argument values
  *
- * Return: 0 en cas de succès, ou un code d'erreur sinon
+ * Return: 0 on success, or an error code on failure
  */
 int main(int argc, char *argv[])
 {
 	if (argc != 3)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 	return (copiefile(argv[1], argv[2]));
