@@ -44,8 +44,17 @@ void handle_copy(int fd_from, int fd_to, char *buffer,
 {
 	ssize_t b_read, b_written;
 
-	while ((b_read = read(fd_from, buffer, 1024)) > 0)
+
+	while ((b_read = b_read = read(fd_from, buffer, 1024)) != 0)
 	{
+		if (b_read == -1)
+		{
+			dprintf(2, "Error: Can't read from file %s\n", file_from);
+			close_file(fd_from);
+			close_file(fd_to);
+			exit(98);
+		}
+
 		b_written = write(fd_to, buffer, b_read);
 		if (b_written != b_read)
 		{
@@ -56,16 +65,7 @@ void handle_copy(int fd_from, int fd_to, char *buffer,
 		}
 	}
 
-	if (b_read == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		close_file(fd_from);
-		close_file(fd_to);
-		exit(98);
-	}
 }
-
-
 /**
  * copiefile - Manages opening, copying, and closing files
  * @file_from: Source file name
