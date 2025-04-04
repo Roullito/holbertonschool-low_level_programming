@@ -25,24 +25,15 @@ void close_file(int fd)
  * @file_to: Destination file name (for error reporting)
  */
 void handle_copy(int fd_from, int fd_to,
-		const char *file_from, const char *file_to)
+	const char *file_from, const char *file_to)
 {
 	char buffer[1024];
 	ssize_t b_read, b_written;
 
-	while (1)
+	while ((b_read = read(fd_from, buffer, 1024)) >= 0)
 	{
-		b_read = read(fd_from, buffer, 1024);
-		if (b_read == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't read from file %s\n", file_from);
-			close_file(fd_from);
-			close_file(fd_to);
-			exit(98);
-		}
 		if (b_read == 0)
-			break;
+		break;
 
 		b_written = write(fd_to, buffer, b_read);
 		if (b_written != b_read)
@@ -53,6 +44,15 @@ void handle_copy(int fd_from, int fd_to,
 			close_file(fd_to);
 			exit(99);
 		}
+	}
+
+	if (b_read == -1)
+	{
+		dprintf(STDERR_FILENO,
+			"Error: Can't read from file %s\n", file_from);
+		close_file(fd_from);
+		close_file(fd_to);
+		exit(98);
 	}
 }
 
