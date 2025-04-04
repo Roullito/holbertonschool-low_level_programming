@@ -56,7 +56,7 @@ void open_files(const char *file_from, const char *file_to, int *fd_from, int *f
 	if (*fd_to == -1)
 	{
 		close(*fd_from);
-		dprintf(2, "Error: Can't write to file %s\n", file_to);
+		dprintf(2, "Error: Can't write to %s\n", file_to);
 		exit(99);
 	}
 }
@@ -87,7 +87,7 @@ void copy_content(int fd_from, int fd_to)
 			free(buffer);
 			close(fd_from);
 			close(fd_to);
-			dprintf(2, "Error: Can't write to file\n");
+			dprintf(2, "Error: Can't write to %d\n", fd_to);
 			exit(99);
 		}
 	}
@@ -97,7 +97,7 @@ void copy_content(int fd_from, int fd_to)
 		free(buffer);
 		close(fd_from);
 		close(fd_to);
-		dprintf(2, "Error: Can't read from file\n");
+		dprintf(2, "Error: Can't read from file %d\n", fd_from);
 		exit(98);
 	}
 
