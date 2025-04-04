@@ -51,7 +51,7 @@ int open_file(const char *filename, int flags, int perm, int exit_code)
 			dprintf(2, "Error: Can't read from file %s\n", filename);
 		else
 			dprintf(2, "Error: Can't write to %s\n", filename);
-		dprintf(1, "%d\n", exit_code);
+
 		exit(exit_code);
 	}
 
