@@ -51,6 +51,7 @@ int open_file(const char *filename, int flags, int perm, int exit_code)
 			dprintf(2, "Error: Can't read from file %s\n", filename);
 		else
 			dprintf(2, "Error: Can't write to %s\n", filename);
+		dprintf(1, "%d\n", exit_code);
 		exit(exit_code);
 	}
 
@@ -76,12 +77,14 @@ void copy_content(int fd_from, int fd_to,
 		if (write_count != read_count)
 		{
 			dprintf(2, "Error: Can't write to %s\n", file_to);
+			dprintf(1, "99\n");
 			exit(99);
 		}
 	}
 	if (read_count == -1)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", file_from);
+		dprintf(1, "98\n");
 		exit(98);
 	}
 }
