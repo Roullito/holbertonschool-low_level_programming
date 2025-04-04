@@ -40,22 +40,14 @@ void check_args(const char *file_from, char *file_to)
  * @file_to: Destination file name (for error message)
  */
 void handle_copy(int fd_from, int fd_to, char *buffer,
-		const char *file_from, const char *file_to)
+	const char *file_from, const char *file_to)
 {
 	ssize_t b_read, b_written;
 
-	while ((b_read = read(fd_from, buffer, 1024)) != 0)
+	while ((b_read = read(fd_from, buffer, 1024)) > 0)
 	{
-		if (b_read == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-			close_file(fd_from);
-			close_file(fd_to);
-			exit(98);
-		}
-
 		b_written = write(fd_to, buffer, b_read);
-		if (b_written == -1)
+		if (b_written != b_read)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 			close_file(fd_from);
@@ -63,7 +55,16 @@ void handle_copy(int fd_from, int fd_to, char *buffer,
 			exit(99);
 		}
 	}
+
+	if (b_read == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		close_file(fd_from);
+		close_file(fd_to);
+		exit(98);
+	}
 }
+
 
 /**
  * copiefile - Manages opening, copying, and closing files
