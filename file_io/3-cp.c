@@ -4,8 +4,8 @@
 #include <stdio.h>
 
 /**
- * close_file - Close a file descriptor, with error handling
- * @fd: The file descriptor
+ * close_file - Close a file descriptor with error handling
+ * @fd: File descriptor
  */
 void close_file(int fd)
 {
@@ -18,11 +18,11 @@ void close_file(int fd)
 }
 
 /**
- * handle_copy - Copy content from source to destination
- * @fd_from: Source file descriptor
- * @fd_to: Destination file descriptor
- * @file_from: Source file name (for error reporting)
- * @file_to: Destination file name (for error reporting)
+ * handle_copy - Copies from fd_from to fd_to
+ * @fd_from: source file descriptor
+ * @fd_to: destination file descriptor
+ * @file_from: name of source file (for error messages)
+ * @file_to: name of destination file (for error messages)
  */
 void handle_copy(int fd_from, int fd_to,
 	const char *file_from, const char *file_to)
@@ -30,32 +30,37 @@ void handle_copy(int fd_from, int fd_to,
 	char buffer[1024];
 	ssize_t b_read, b_written;
 
-	while ((b_read = read(fd_from, buffer, 1024)) > 0)
+	while (1)
 	{
-		b_written = write(fd_to, buffer, b_read);
-		if (b_written != b_read)
+		b_read = read(fd_from, buffer, 1024);
+		if (b_read == -1)
 		{
-			dprintf(2, "Error: Can't write to %s\n", file_to);
+			dprintf(STDERR_FILENO,
+				"Error: Can't read from file %s\n", file_from);
+			close_file(fd_from);
+			close_file(fd_to);
+			exit(98);
+		}
+		if (b_read == 0)
+			break;
+
+		b_written = write(fd_to, buffer, b_read);
+		if (b_written == -1 || b_written != b_read)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't write to %s\n", file_to);
 			close_file(fd_from);
 			close_file(fd_to);
 			exit(99);
 		}
 	}
-
-	if (b_read == -1)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", file_from);
-		close_file(fd_from);
-		close_file(fd_to);
-		exit(98);
-	}
 }
 
 /**
  * main - Entry point, copies content from one file to another
- * @argc: Argument count
- * @argv: Argument vector
- * Return: 0 on success
+ * @argc: argument count
+ * @argv: argument values
+ * Return: 0 on success, exits with error code otherwise
  */
 int main(int argc, char *argv[])
 {
@@ -76,8 +81,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	fd_to = open(argv[2],
-			O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
 		dprintf(STDERR_FILENO,
