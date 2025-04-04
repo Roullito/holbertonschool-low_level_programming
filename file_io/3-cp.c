@@ -30,16 +30,12 @@ void handle_copy(int fd_from, int fd_to,
 	char buffer[1024];
 	ssize_t b_read, b_written;
 
-	while ((b_read = read(fd_from, buffer, 1024)) >= 0)
+	while ((b_read = read(fd_from, buffer, 1024)) > 0)
 	{
-		if (b_read == 0)
-		break;
-
 		b_written = write(fd_to, buffer, b_read);
 		if (b_written != b_read)
 		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't write to %s\n", file_to);
+			dprintf(2, "Error: Can't write to %s\n", file_to);
 			close_file(fd_from);
 			close_file(fd_to);
 			exit(99);
@@ -48,8 +44,7 @@ void handle_copy(int fd_from, int fd_to,
 
 	if (b_read == -1)
 	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't read from file %s\n", file_from);
+		dprintf(2, "Error: Can't read from file %s\n", file_from);
 		close_file(fd_from);
 		close_file(fd_to);
 		exit(98);
