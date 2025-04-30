@@ -1,4 +1,7 @@
-![Holberton Logo](https://raw.githubusercontent.com/holbertonschool/Betty/master/logo.png)
+<div align="center">
+  <img src="https://github.com/ksyv/holbertonschool-web_front_end/blob/main/baniere_holberton.png" alt="Banner">
+</div>
+
 
 # C - Singly Linked Lists
 
