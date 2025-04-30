@@ -1,6 +1,8 @@
-# C - Doubly linked lists
+<div align="center">
+  <img src="https://github.com/ksyv/holbertonschool-web_front_end/blob/main/baniere_holberton.png" alt="Banner">
+</div>
 
-![Holberton Logo](https://www.holbertonschool.com/holberton-logo.png)
+# C - Doubly linked lists
 
 ## 📚 Table of Contents
 
