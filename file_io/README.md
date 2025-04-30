@@ -1,4 +1,6 @@
-![Holberton Logo](https://www.holbertonschool.com/holberton-logo.png)
+<div align="center">
+  <img src="https://github.com/ksyv/holbertonschool-web_front_end/blob/main/baniere_holberton.png" alt="Banner">
+</div>
 
 # C - File I/O
 
